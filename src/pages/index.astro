@@ -1,0 +1,28 @@
+---
+import Layout from '../layout/layout.astro';
+// solo corre del lado del servidor
+// en caso de hacer build no se actuailzara por SSR
+const name ="Tony"
+const gateHour = () => {
+	const date = new Date();
+	return date.getSeconds();
+};
+const hour = gateHour();
+console.log(name);
+---
+
+<script> //esto si funciona porque es del lado del cliente en el build 
+	const gateHour = () => {
+	const date = new Date();
+	return date.getSeconds();
+};
+const hour = gateHour();
+
+const title = document.querySelector('p');
+title && (title.textContent = `La hora actual es: ${hour}`);
+</script>
+
+<Layout title="HOME" description="Página principal de Astro">
+	<h1 class="text-4xl font-bold text-center text-red-700">QUE ONDAA</h1>
+	<p>La hora actual es: {hour}</p>
+</Layout>
